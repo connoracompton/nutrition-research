@@ -1,0 +1,41 @@
+// Prisma schema: the single source of truth for the database tables.
+// After editing, run:  npx prisma migrate dev --name <what-changed>
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id           Int        @id @default(autoincrement())
+  email        String     @unique
+  passwordHash String
+  name         String?
+  createdAt    DateTime   @default(now())
+  logs         FoodLog[]
+}
+
+// One row per food the user logged. Nutrients are stored per ONE serving,
+// so changing `servings` never requires another call to the nutrition API.
+model FoodLog {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    Int
+  date      String   // "YYYY-MM-DD" in the user's local time
+  meal      String   // breakfast | lunch | dinner | snack
+  fdcId     Int      // USDA FoodData Central id
+  name      String
+  servings  Float    @default(1)
+  calories  Float    @default(0)
+  protein   Float    @default(0)
+  carbs     Float    @default(0)
+  fat       Float    @default(0)
+  fiber     Float    @default(0)
+  sodium    Float    @default(0)
+  createdAt DateTime @default(now())
+
+  @@index([userId, date])
+}
