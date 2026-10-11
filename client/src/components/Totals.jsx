@@ -32,7 +32,7 @@ export default function Totals({ totals }) {
             <Bar dataKey="percent" radius={[4, 4, 0, 0]}>
               {data.map((n) => (
                 // Going over a limit (sodium) is the only "bad" over-100% case.
-                <Cell key={n.key} fill={n.isLimit && n.percent > 100 ? '#c2410c' : '#2f7d4f'} />
+                <Cell key={n.key} fill={n.isLimit && n.percent > 100 ? '#c2410c' : '#2563eb'} />
               ))}
             </Bar>
           </BarChart>
