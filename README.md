@@ -1,4 +1,4 @@
-# Nutrition Log — research sample app
+# Nutrition Log - research sample app
 
 A small full-stack app built to try out the stack our team is considering for the
 nutrition tracker: **React + Vite**, **Node.js + Express**, **PostgreSQL + Prisma**,
@@ -76,36 +76,36 @@ Everything except the two auth routes requires `Authorization: Bearer <token>`.
 
 ## Notes for the team discussion
 
-**Vite + React** — Scaffolding is one command and the dev server reloads instantly.
+**Vite + React** - Scaffolding is one command and the dev server reloads instantly.
 The dev proxy means no CORS setup while developing. Plain `useState`/`useEffect`
 was enough here; with five screens we will want React Router, and probably a data
 fetching library so every screen doesn't hand-roll loading and error state.
 
-**Express 5** — Very little to learn. Async route handlers now forward thrown errors
+**Express 5** - Very little to learn. Async route handlers now forward thrown errors
 to the error middleware automatically, so no try/catch wrappers. It gives no
 structure or validation, so we should agree on a folder layout and a validation
 library (e.g. Zod) early.
 
-**Prisma 7 + PostgreSQL** — The schema file is readable and migrations are generated
+**Prisma 7 + PostgreSQL** - The schema file is readable and migrations are generated
 for us. Version 7 differs from most tutorials online: the database URL lives in
 `prisma.config.ts`, a driver adapter (`@prisma/adapter-pg`) is required, and
 `prisma generate` is a separate step from `migrate dev`. Everyone needs Postgres
 installed locally (or we share a hosted dev database such as Neon or Railway).
 
-**Auth (bcrypt + JWT)** — Simple to build. The token is kept in `localStorage`, which
+**Auth (bcrypt + JWT)** - Simple to build. The token is kept in `localStorage`, which
 is the easy option but readable by any script on the page; an httpOnly cookie is the
 safer choice for the real app. There is no password reset or email verification.
 
-**USDA FoodData Central** — Free, and has the micronutrients we need (iron, calcium,
+**USDA FoodData Central** - Free, and has the micronutrients we need (iron, calcium,
 vitamin D). Downsides: results are per 100 g rather than per household serving,
 names are clinical ("Bananas, raw"), energy uses different nutrient ids across
 datasets, and branded foods are a separate, noisier dataset. Storing nutrients on
 each log row means past logs never need another API call.
 
-**Recharts** — Charts are React components, so they fit naturally. It is the largest
+**Recharts** - Charts are React components, so they fit naturally. It is the largest
 dependency in the bundle (the build warns about chunk size); lazy-loading the chart
 screens would fix that.
 
-**npm** — `package.json` lists what we asked for; `package-lock.json` pins the exact
+**npm** - `package.json` lists what we asked for; `package-lock.json` pins the exact
 versions everyone gets. Commit the lockfile, and use `npm ci` on a fresh clone or in
 CI so installs are reproducible. Never commit `node_modules` or `.env`.
