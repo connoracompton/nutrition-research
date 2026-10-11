@@ -2,7 +2,7 @@
 // In the real app these targets would come from each user's goals.
 export const NUTRIENTS = [
   { key: 'calories', label: 'Calories', unit: 'kcal', target: 2000 },
-  { key: 'protein', label: 'Protein', unit: 'g', target: 50 },
+  { key: 'protein', label: 'Protein', unit: 'g', target: 100 },
   { key: 'carbs', label: 'Carbs', unit: 'g', target: 275 },
   { key: 'fat', label: 'Fat', unit: 'g', target: 78 },
   { key: 'fiber', label: 'Fiber', unit: 'g', target: 28 },
